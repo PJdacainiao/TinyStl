@@ -49,7 +49,7 @@ namespace TinyStl {
 
 	public:
 		rb_tree_iterator() {}
-		rb_tree_iterator(nodePtr n) { node = n; } //Ö±½Ó³õÊ¼»¯»á´í£¬nodeÊÇ»ùÀà³ÉÔ±£¬±ØÐëÓÉ»ùÀàµÄ¹¹Ôìº¯Êý¹¹Ôì£¬ÏÂÍ¬
+		rb_tree_iterator(nodePtr n) { node = n; } 
 		rb_tree_iterator(const iterator& it) { node = it.node; }
 		
 		reference operator*() const { return node->value; }
@@ -66,7 +66,7 @@ namespace TinyStl {
 		void decrement();
 	};
 
-	template<class Key,class Value, class KeyofValue=key_of_value<Value>, class Compare = less<Value>, class Alloc=allocator<rb_tree_node<Value>>> //¸ÃKÖµ¶ÔÒÔºó×ömapÓÐÓÃ
+	template<class Key,class Value, class KeyofValue=key_of_value<Value>, class Compare = less<Value>, class Alloc=allocator<rb_tree_node<Value>>> //è¯¥Kå€¼å¯¹ä»¥åŽåšmapæœ‰ç”¨
 	class rb_tree {
 	public:
 		typedef Key key_value;
@@ -100,9 +100,9 @@ namespace TinyStl {
 		static nodePtr& parent(nodePtr n) { return n->parent; }
 		static reference value(nodePtr n) { return n->value; }
 		static const Key& key(nodePtr n) { return KeyofValue()(value(n)); }
-		nodePtr & root() { return header->parent; }  //ÐèÒª½øÐÐÀàÐÍ×ª»»£¬header->parentÈÔÈ»ÊÇrbtree_node_base*ÀàÐÍ£¨ºÍ¼Ì³ÐÏÂÀ´ÓÐ¹Ø£¿£©
-		nodePtr& leftmost() { return header->left; } //Ö¸Ïò×ó²à×îÐ¡µÄÔªËØ
-		nodePtr& rightmost() { return header->right; } //Ö¸ÏòÓÒ²à×îÐ¡µÄÔªËØ
+		nodePtr & root() { return header->parent; }  //éœ€è¦è¿›è¡Œç±»åž‹è½¬æ¢ï¼Œheader->parentä»ç„¶æ˜¯rbtree_node_base*ç±»åž‹ï¼ˆå’Œç»§æ‰¿ä¸‹æ¥æœ‰å…³ï¼Ÿï¼‰
+		nodePtr& leftmost() { return header->left; } //æŒ‡å‘å·¦ä¾§æœ€å°çš„å…ƒç´ 
+		nodePtr& rightmost() { return header->right; } //æŒ‡å‘å³ä¾§æœ€å°çš„å…ƒç´ 
 		static typename colortype& color(nodePtr n) { return n->color; }
 		void rb_tree_balance(nodePtr x,nodePtr& root);
 		void rbtree_delete_fix(nodePtr p, nodePtr x, nodePtr& root);
